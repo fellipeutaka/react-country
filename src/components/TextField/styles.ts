@@ -9,6 +9,11 @@ export const Container = styled.div`
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.bg};
   box-shadow: 0px 0px 6px rgba(12, 16, 19, 0.5);
+  transition: box-shadow 200ms ease;
+
+  &:focus-within {
+    box-shadow: 0px 0px 6px ${({ theme }) => theme.colors.primary};
+  }
 `;
 
 export const Icon = styled.div`
@@ -25,12 +30,12 @@ export const Icon = styled.div`
 
 export const Input = styled.input`
   flex: 1;
-  max-width: 100%;
+  width: 100%;
   border: none;
   outline: none;
   font-size: 1rem;
 
   &::placeholder {
-    color: #8c8c8c;
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;

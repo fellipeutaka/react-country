@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "@/styles/GlobalStyles";
 import { base } from "@/styles/themes/base";
 
-const nunito = Nunito({
+export const nunito = Nunito({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });

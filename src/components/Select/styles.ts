@@ -16,6 +16,7 @@ export const Trigger = styled(SelectPrimitive.Trigger)`
   background-color: transparent;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   border-radius: 0.5rem;
+  user-select: none;
   transition: all 0.2s;
 
   &:focus {
@@ -68,6 +69,7 @@ export const Item = styled(SelectPrimitive.Item)`
   user-select: none;
   outline: none;
   transition: background-color 0.2s ease-in-out;
+  font-family: unset;
 
   &[data-highlighted] {
     background-color: ${({ theme }) => theme.colors.primary};

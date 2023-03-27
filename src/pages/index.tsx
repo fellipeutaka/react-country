@@ -1,4 +1,4 @@
-import { useDeferredValue, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 
 import { GetStaticProps } from "next";
 import { MagnifyingGlass } from "phosphor-react";
@@ -9,25 +9,60 @@ import { Header } from "@/components/Header";
 import { Select } from "@/components/Select";
 import * as TextField from "@/components/TextField";
 import { SEO } from "@/components/utils/SEO";
-import { regions } from "@/constants/regions";
+import { Regions, regions } from "@/constants/regions";
+import { api } from "@/lib/axios";
 import * as S from "@/styles/Home";
 
 type HomeProps = {
   countries: Country[];
 };
 
+const INITIAL_SELECT_VALUE = "Filtre pela região";
+
+type HandleFilterByRegionProps = {
+  countries: Country[];
+  region: Regions;
+};
+
+function handleFilterByRegion({
+  countries,
+  region,
+}: HandleFilterByRegionProps) {
+  return countries.filter((country) => country.region === region);
+}
+
+type HandleFilterByNameProps = {
+  countries: Country[];
+  query: string;
+};
+
+function handleFilterByName({ countries, query }: HandleFilterByNameProps) {
+  return countries.filter((country) =>
+    country.translations.por.common.toLowerCase().includes(query.toLowerCase())
+  );
+}
+
 export default function Home({ countries }: HomeProps) {
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
+  const [region, setRegion] = useState<Regions | typeof INITIAL_SELECT_VALUE>(
+    INITIAL_SELECT_VALUE
+  );
 
-  const filteredCountries =
-    deferredQuery.trim().length > 0
-      ? countries.filter((country) =>
-          country.translations.por.common
-            .toLowerCase()
-            .includes(deferredQuery.toLowerCase())
-        )
-      : countries;
+  const filteredCountries = useMemo(() => {
+    const filteredByRegion =
+      region !== INITIAL_SELECT_VALUE
+        ? handleFilterByRegion({ countries, region })
+        : countries;
+    const filteredByName =
+      deferredQuery.trim().length > 0
+        ? handleFilterByName({
+            countries: filteredByRegion,
+            query: deferredQuery,
+          })
+        : filteredByRegion;
+    return filteredByName;
+  }, [countries, deferredQuery, region]);
 
   return (
     <SEO title="Country" description="Description...">
@@ -43,7 +78,14 @@ export default function Home({ countries }: HomeProps) {
             placeholder="Pesquise um país"
           />
         </TextField.Root>
-        <Select items={regions} placeholder="Filtre pela região" />
+        <Select
+          rootProps={{
+            value: region,
+            onValueChange: (value) => setRegion(value as typeof region),
+          }}
+          items={[INITIAL_SELECT_VALUE, ...regions]}
+          placeholder={INITIAL_SELECT_VALUE}
+        />
       </S.Search>
       <CountryList countries={filteredCountries} />
     </SEO>
@@ -51,9 +93,7 @@ export default function Home({ countries }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const { data } = await api.get<Country[]>("/all");
-
-  const data = (await import("../constants/data.json")).default;
+  const { data } = await api.get<Country[]>("/all");
 
   return {
     props: {
