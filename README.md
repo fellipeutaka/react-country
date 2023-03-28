@@ -36,7 +36,6 @@ A Next.js app with Styled-Components to get information about countries.
 - Component Composition Pattern
 - Next.js Dynamic Routes with getStaticProps and getStaticPaths
 - Theming using ThemeProvider from Styled-Components
-- Theming using ThemeProvider from Styled-Components
 - Stylesheet rehydration using ServerStyleSheet for SSR (Server-side rendering) in Next.js with Styled-Components
 - CSS Grid Layout & CSS Flexible Box Layout
 - Media queries
