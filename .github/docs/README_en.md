@@ -3,7 +3,7 @@
 A Next.js app with Styled-Components to get information about countries.
 
 ![React Country Homepage](../screenshots/homepage.png)
-![React Country Details page](../screenshots/country-details.png.png)
+![React Country Details page](../screenshots/country-details.png)
 
 ## Features
 
