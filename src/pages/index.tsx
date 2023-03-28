@@ -26,7 +26,10 @@ export default function Home({ countries }: HomeProps) {
   );
 
   return (
-    <SEO title="Country" description="Description...">
+    <SEO
+      title="Country"
+      description="A Next.js app with Styled-Components to get information about countries"
+    >
       <Header />
       <S.Search>
         <TextField.Root id="search">
@@ -54,7 +57,9 @@ export default function Home({ countries }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await api.get<Country[]>("/all");
+  const { data } = await api.get<Country[]>(
+    "/all?fields=name,population,capital,region,flags,translations"
+  );
 
   return {
     props: {

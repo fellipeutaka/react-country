@@ -1,5 +1,6 @@
 {
   "name": "react-country",
+  "description": "A Next.js app with Styled-Components to get information about countries",
   "version": "1.0.0",
   "private": true,
   "scripts": {

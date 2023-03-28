@@ -10,22 +10,6 @@ import { useCountry } from "@/hooks/useCountry";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Country";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.5 } },
-  exit: { opacity: 0, transition: { duration: 0.5 } },
-};
-
-const flagVariants = {
-  hidden: { x: -100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-};
-
-const infoVariants = {
-  hidden: { x: 100, opacity: 0 },
-  visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-};
-
 type CountryProps = {
   data: Country;
 };
@@ -52,7 +36,11 @@ export default function Country({ data }: CountryProps) {
       <motion.div
         initial="hidden"
         animate="visible"
-        variants={containerVariants}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1, transition: { duration: 0.5 } },
+          exit: { opacity: 0, transition: { duration: 0.5 } },
+        }}
       >
         <S.Container>
           <S.BackButton onClick={back}>
@@ -64,9 +52,19 @@ export default function Country({ data }: CountryProps) {
               src={flag}
               initial="hidden"
               animate="visible"
-              variants={flagVariants}
+              variants={{
+                hidden: { x: -100, opacity: 0 },
+                visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+              }}
             />
-            <S.Info initial="hidden" animate="visible" variants={infoVariants}>
+            <S.Info
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { x: 100, opacity: 0 },
+                visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
+              }}
+            >
               <S.Title>{name}</S.Title>
               <S.Text>
                 <b>Nome nativo: </b>

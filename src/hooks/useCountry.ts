@@ -3,7 +3,7 @@ import type { Country } from "@/@types/country";
 export function useCountry(data: Country) {
   const name = data.name.nativeName?.por?.common ?? data.name.common;
   const nativeName = data.name.nativeName
-    ? Object.values(data.name.nativeName)[0].common
+    ? Object.values(data.name.nativeName)[0]?.common
     : data.name.common;
   const population = data.population.toLocaleString("pt-BR");
   const capital = data.capital?.[0] ?? "Sem capital";
