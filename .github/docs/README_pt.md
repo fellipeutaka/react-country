@@ -33,25 +33,25 @@ Para ter uma cópia local em execução, siga estas etapas:
 2. Instale as dependências:
 
 ```bash
-# If you are using NPM
+# Se você está usando NPM
 npm install
 
-# If you are using Yarn
+# Se você está usando Yarn
 yarn install
 
-# If you are using PNPM
+# Se você está usando PNPM
 pnpm install
 ```
 
 3. Inicie o servidor de desenvolvimento:
 
 ```bash
-# If you are using NPM
+# Se você está usando NPM
 npm run dev
 
-# If you are using Yarn
+# Se você está usando Yarn
 yarn dev
 
-# If you are using PNPM
+# Se você está usando PNPM
 pnpm dev
 ```
