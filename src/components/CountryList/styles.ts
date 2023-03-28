@@ -13,3 +13,8 @@ export const Container = styled(motion.div)`
     margin-inline: ${({ theme }) => theme.spacing.bodyMargin.lg};
   }
 `;
+
+export const NotFound = styled.strong`
+  font-size: 2rem;
+  font-weight: 700;
+`;

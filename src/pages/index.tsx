@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useState } from "react";
 
 import { GetStaticProps } from "next";
 import { MagnifyingGlass } from "phosphor-react";
@@ -12,42 +12,17 @@ import { SEO } from "@/components/utils/SEO";
 import { Regions, regions } from "@/constants/regions";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Home";
-import {
-  handleFilterByName,
-  handleFilterByRegion,
-} from "@/utils/handleFilterCountries";
 
 type HomeProps = {
   countries: Country[];
 };
 
-const INITIAL_SELECT_VALUE = "Filtre pela região";
+export const INITIAL_SELECT_VALUE = "Filtre pela região";
 
 export default function Home({ countries }: HomeProps) {
-  const [filteredCountries, setFilteredCountries] = useState(countries);
-  const queryInput = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("");
   const [region, setRegion] = useState<Regions | typeof INITIAL_SELECT_VALUE>(
     INITIAL_SELECT_VALUE
-  );
-
-  const onQueryInputChanges = useCallback(
-    (query: string) => {
-      setTimeout(() => {
-        const filteredByRegion =
-          region !== INITIAL_SELECT_VALUE
-            ? handleFilterByRegion({ countries, region })
-            : countries;
-        const filteredByName =
-          query.trim().length > 0
-            ? handleFilterByName({
-                countries: filteredByRegion,
-                query,
-              })
-            : filteredByRegion;
-        setFilteredCountries(filteredByName);
-      }, 200);
-    },
-    [countries, region]
   );
 
   return (
@@ -59,8 +34,8 @@ export default function Home({ countries }: HomeProps) {
             <MagnifyingGlass />
           </TextField.Icon>
           <TextField.Input
-            ref={queryInput}
-            onChange={(e) => onQueryInputChanges(e.target.value)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             placeholder="Pesquise um país"
           />
         </TextField.Root>
@@ -73,7 +48,7 @@ export default function Home({ countries }: HomeProps) {
           placeholder={INITIAL_SELECT_VALUE}
         />
       </S.Search>
-      <CountryList countries={filteredCountries} />
+      <CountryList query={query} region={region} countries={countries} />
     </SEO>
   );
 }
