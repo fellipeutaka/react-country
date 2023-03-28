@@ -25,6 +25,18 @@ Um aplicativo Next.js com Styled-Components para obter informações sobre país
 - [Axios](https://axios-http.com/docs/intro)
 - [REST Countries API](https://restcountries.com/)
 
+## Boas práticas/Padrões utilizados
+
+- React Hooks (useState, useEffect, useTransition, useDeferredValue)
+- Custom hooks (useCountry, useFilteredCountries)
+- Component Composition Pattern (Padrão de composição de componentes)
+- Next.js Rotas Dinâmicas com getStaticProps e getStaticPaths
+- Tematização utilizando o ThemeProvider do Styled-Components
+- Tematização utilizando o ThemeProvider do Styled-Components
+- Reidratação da folha de estilo usando o ServerStyleSheet para SSR (Server-side rendering, ou seja, Renderização no lado do servidor) no Next.js com o Styled-Components
+- CSS Grid Layout e CSS Flexible Box Layout
+- Media queries
+
 ## Começando
 
 Para ter uma cópia local em execução, siga estas etapas:
