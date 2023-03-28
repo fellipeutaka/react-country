@@ -47,12 +47,11 @@ export default function Country({ data }: CountryProps) {
   } = useCountry(data);
 
   return (
-    <SEO title={`${name} / Country`} description="pais banaca">
+    <SEO title={`${name} / Country`} description={`Detalhes do país ${name}`}>
       <Header />
       <motion.div
         initial="hidden"
         animate="visible"
-        exit="exit"
         variants={containerVariants}
       >
         <S.Container>

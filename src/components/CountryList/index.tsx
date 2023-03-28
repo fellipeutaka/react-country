@@ -1,5 +1,3 @@
-import { AnimatePresence } from "framer-motion";
-
 import { Country } from "@/@types/country";
 import { useCountry } from "@/hooks/useCountry";
 
@@ -17,18 +15,16 @@ export function CountryList({ countries }: CountryListProps) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <AnimatePresence initial={false}>
-        {countries.map(useCountry).map((country) => (
-          <CountryCard
-            key={country.flag}
-            name={country.name}
-            capital={country.capital}
-            flag={country.flag}
-            population={country.population}
-            region={country.region}
-          />
-        ))}
-      </AnimatePresence>
+      {countries.map(useCountry).map((country) => (
+        <CountryCard
+          key={country.flag}
+          name={country.name}
+          capital={country.capital}
+          flag={country.flag}
+          population={country.population}
+          region={country.region}
+        />
+      ))}
     </S.Container>
   );
 }

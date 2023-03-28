@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, memo } from "react";
 
 import { CaretDown, CaretUp, Check } from "phosphor-react";
 
@@ -17,36 +17,38 @@ type SelectProps = {
   items: string[] | readonly string[];
 };
 
-export const Select = forwardRef<HTMLButtonElement, SelectProps>(
-  ({ rootProps, triggerProps, placeholder, items }, ref) => (
-    <S.Root {...rootProps}>
-      <S.Trigger {...triggerProps} ref={ref}>
-        <S.Value placeholder={<S.Placeholder>{placeholder}</S.Placeholder>} />
-        <S.Icon>
-          <CaretDown weight="bold" size={24} />
-        </S.Icon>
-      </S.Trigger>
-      <S.Portal>
-        <S.Content>
-          <S.ScrollUpButton>
-            <CaretUp weight="bold" />
-          </S.ScrollUpButton>
-          <S.Viewport>
-            {items.map((item) => (
-              <S.Item key={item} value={item} style={nunito.style}>
-                <S.ItemText>{item}</S.ItemText>
-                <S.ItemIndicator>
-                  <Check size={16} weight="bold" />
-                </S.ItemIndicator>
-              </S.Item>
-            ))}
-          </S.Viewport>
-          <S.ScrollDownButton>
-            <CaretDown />
-          </S.ScrollDownButton>
-        </S.Content>
-      </S.Portal>
-    </S.Root>
+export const Select = memo(
+  forwardRef<HTMLButtonElement, SelectProps>(
+    ({ rootProps, triggerProps, placeholder, items }, ref) => (
+      <S.Root {...rootProps}>
+        <S.Trigger {...triggerProps} ref={ref}>
+          <S.Value placeholder={<S.Placeholder>{placeholder}</S.Placeholder>} />
+          <S.Icon>
+            <CaretDown weight="bold" size={24} />
+          </S.Icon>
+        </S.Trigger>
+        <S.Portal>
+          <S.Content>
+            <S.ScrollUpButton>
+              <CaretUp weight="bold" />
+            </S.ScrollUpButton>
+            <S.Viewport>
+              {items.map((item) => (
+                <S.Item key={item} value={item} style={nunito.style}>
+                  <S.ItemText>{item}</S.ItemText>
+                  <S.ItemIndicator>
+                    <Check size={16} weight="bold" />
+                  </S.ItemIndicator>
+                </S.Item>
+              ))}
+            </S.Viewport>
+            <S.ScrollDownButton>
+              <CaretDown />
+            </S.ScrollDownButton>
+          </S.Content>
+        </S.Portal>
+      </S.Root>
+    )
   )
 );
 

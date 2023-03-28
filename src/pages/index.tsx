@@ -1,4 +1,4 @@
-import { useDeferredValue, useMemo, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { GetStaticProps } from "next";
 import { MagnifyingGlass } from "phosphor-react";
@@ -12,6 +12,10 @@ import { SEO } from "@/components/utils/SEO";
 import { Regions, regions } from "@/constants/regions";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Home";
+import {
+  handleFilterByName,
+  handleFilterByRegion,
+} from "@/utils/handleFilterCountries";
 
 type HomeProps = {
   countries: Country[];
@@ -19,50 +23,32 @@ type HomeProps = {
 
 const INITIAL_SELECT_VALUE = "Filtre pela região";
 
-type HandleFilterByRegionProps = {
-  countries: Country[];
-  region: Regions;
-};
-
-function handleFilterByRegion({
-  countries,
-  region,
-}: HandleFilterByRegionProps) {
-  return countries.filter((country) => country.region === region);
-}
-
-type HandleFilterByNameProps = {
-  countries: Country[];
-  query: string;
-};
-
-function handleFilterByName({ countries, query }: HandleFilterByNameProps) {
-  return countries.filter((country) =>
-    country.translations.por.common.toLowerCase().includes(query.toLowerCase())
-  );
-}
-
 export default function Home({ countries }: HomeProps) {
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
+  const [filteredCountries, setFilteredCountries] = useState(countries);
+  const queryInput = useRef<HTMLInputElement>(null);
   const [region, setRegion] = useState<Regions | typeof INITIAL_SELECT_VALUE>(
     INITIAL_SELECT_VALUE
   );
 
-  const filteredCountries = useMemo(() => {
-    const filteredByRegion =
-      region !== INITIAL_SELECT_VALUE
-        ? handleFilterByRegion({ countries, region })
-        : countries;
-    const filteredByName =
-      deferredQuery.trim().length > 0
-        ? handleFilterByName({
-            countries: filteredByRegion,
-            query: deferredQuery,
-          })
-        : filteredByRegion;
-    return filteredByName;
-  }, [countries, deferredQuery, region]);
+  const onQueryInputChanges = useCallback(
+    (query: string) => {
+      setTimeout(() => {
+        const filteredByRegion =
+          region !== INITIAL_SELECT_VALUE
+            ? handleFilterByRegion({ countries, region })
+            : countries;
+        const filteredByName =
+          query.trim().length > 0
+            ? handleFilterByName({
+                countries: filteredByRegion,
+                query,
+              })
+            : filteredByRegion;
+        setFilteredCountries(filteredByName);
+      }, 200);
+    },
+    [countries, region]
+  );
 
   return (
     <SEO title="Country" description="Description...">
@@ -73,14 +59,14 @@ export default function Home({ countries }: HomeProps) {
             <MagnifyingGlass />
           </TextField.Icon>
           <TextField.Input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            ref={queryInput}
+            onChange={(e) => onQueryInputChanges(e.target.value)}
             placeholder="Pesquise um país"
           />
         </TextField.Root>
         <Select
           rootProps={{
-            value: region,
+            defaultValue: INITIAL_SELECT_VALUE,
             onValueChange: (value) => setRegion(value as typeof region),
           }}
           items={[INITIAL_SELECT_VALUE, ...regions]}
