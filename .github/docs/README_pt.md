@@ -17,13 +17,13 @@ Um aplicativo Next.js com Styled-Components para obter informações sobre país
 
 ## Tecnologias
 
-- React
-- Next.js
-- Styled-Components
-- Framer-motion
-- Phosphor icons
-- Axios
-- REST Countries API
+- [React](https://react.dev/)
+- [Next.js](https://nextjs.org/docs/)
+- [Styled-Components](https://styled-components.com/docs)
+- [Framer-motion](https://www.framer.com/motion/)
+- [Phosphor icons](https://phosphoricons.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [REST Countries API](https://restcountries.com/)
 
 ## Começando
 
