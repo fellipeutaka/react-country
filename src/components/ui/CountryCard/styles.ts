@@ -1,17 +1,9 @@
 import NextImage from "next/image";
 import NextLink from "next/link";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
+import { fadeIn } from "@/styles/animations/fadeIn";
 import { animate } from "@/styles/utils/animate";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
 
 export const Container = styled.div`
   display: flex;

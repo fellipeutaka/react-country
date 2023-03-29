@@ -1,19 +1,8 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
+import { growDown } from "@/styles/animations/growDown";
 import { animate } from "@/styles/utils/animate";
 import * as SelectPrimitive from "@radix-ui/react-select";
-
-const growDown = keyframes`
-    0% {
-        transform: scaleY(0);
-    }
-    80% {
-      transform: scaleY(1.1);
-    }
-    100% {
-        transform: scaleY(1);
-    }
-`;
 
 export const Root = styled(SelectPrimitive.Root)``;
 
