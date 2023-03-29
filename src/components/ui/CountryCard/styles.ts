@@ -15,6 +15,8 @@ const fadeIn = keyframes`
 
 export const Container = styled.div`
   display: flex;
+  width: 100%;
+  max-width: 16.875rem;
   flex-direction: column;
   border-radius: 0.5rem;
   margin-inline: auto;
@@ -23,8 +25,7 @@ export const Container = styled.div`
 `;
 
 export const Flag = styled(NextImage)`
-  width: 16.875rem;
-  max-width: 100%;
+  width: 100%;
   border-radius: 0.5rem 0.5rem 0 0;
   object-fit: cover;
 `;

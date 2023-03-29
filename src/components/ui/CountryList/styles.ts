@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16.875rem, 1fr));
-  justify-content: space-between;
+  justify-content: center;
   margin-block: 4rem;
   margin-inline: ${({ theme }) => theme.spacing.bodyMargin.sm};
   gap: 4rem;
