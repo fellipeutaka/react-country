@@ -12,6 +12,7 @@ export const Trigger = styled(SelectPrimitive.Trigger)`
   align-items: center;
   gap: 1rem;
   padding: 1rem;
+  min-width: 10rem;
   height: 3.5rem;
   outline: none;
   border: none;
@@ -26,7 +27,7 @@ export const Trigger = styled(SelectPrimitive.Trigger)`
       0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
 
-  &[data-state="open"] span.select-icon {
+  &[data-state="open"] .select-icon {
     rotate: 180deg;
   }
 `;
@@ -49,10 +50,10 @@ export const Content = styled(SelectPrimitive.Content)`
   border-radius: 0.375rem;
   overflow: hidden;
   transform-origin: top center;
+  width: var(--radix-select-trigger-width);
+  ${animate(growDown)}
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
-
-  ${animate(growDown)}
 `;
 
 export const ScrollUpButton = styled(SelectPrimitive.ScrollUpButton)`
@@ -74,8 +75,8 @@ export const Item = styled(SelectPrimitive.Item)`
   position: relative;
   display: flex;
   align-items: center;
-  height: 1.5rem;
-  padding: 0 1rem 0 1.5rem;
+  min-height: 1.5rem;
+  padding: 0.25rem 1.5rem;
   user-select: none;
   outline: none;
   transition: background-color 0.2s ease-in-out;
