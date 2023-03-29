@@ -12,31 +12,13 @@ export function CountryCard(props: CountryCardProps) {
   const href = `/country/${props.name}`;
 
   return (
-    <S.Container
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: 0.2 }}
-    >
+    <S.Container>
       <S.Link href={href}>
-        <S.Flag
-          src={props.flag}
-          alt={props.name}
-          width={270}
-          height={158}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        />
+        <S.Flag src={props.flag} alt={props.name} width={270} height={158} />
       </S.Link>
       <S.Info>
         <S.Link href={href}>
-          <S.Title
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: 0.1 }}
-          >
-            {props.name}
-          </S.Title>
+          <S.Title>{props.name}</S.Title>
         </S.Link>
         <S.Text>
           <b>População: </b>

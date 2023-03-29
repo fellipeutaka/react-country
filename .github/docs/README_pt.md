@@ -20,14 +20,13 @@ Um aplicativo Next.js com Styled-Components para obter informações sobre país
 - [React](https://react.dev/)
 - [Next.js](https://nextjs.org/docs/)
 - [Styled-Components](https://styled-components.com/docs)
-- [Framer-motion](https://www.framer.com/motion/)
 - [Phosphor icons](https://phosphoricons.com/)
 - [Axios](https://axios-http.com/docs/intro)
 - [REST Countries API](https://restcountries.com/)
 
 ## Boas práticas/Padrões utilizados
 
-- React Hooks (useState, useEffect, useTransition, useDeferredValue)
+- React Hooks (useState, useDeferredValue)
 - Custom hooks (useCountry, useFilteredCountries)
 - Component Composition Pattern (Padrão de composição de componentes)
 - Next.js Rotas Dinâmicas com getStaticProps e getStaticPaths

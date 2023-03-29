@@ -28,7 +28,7 @@ export function useCountry(data: Country) {
     nativeName,
     population,
     region: data.region,
-    subregion: data.subregion,
+    subregion: data.subregion ?? "Sem subregião",
     capital,
     tld,
     currencies,

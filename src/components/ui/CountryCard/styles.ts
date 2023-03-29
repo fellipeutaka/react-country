@@ -1,18 +1,30 @@
-import { motion } from "framer-motion";
+import NextImage from "next/image";
 import NextLink from "next/link";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
-export const Container = styled(motion.div)`
+import { animate } from "@/styles/utils/animate";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
   margin-inline: auto;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  ${animate(fadeIn)}
 `;
 
-export const Flag = styled(motion.img)`
+export const Flag = styled(NextImage)`
   width: 16.875rem;
-  height: 9.875rem;
+  max-width: 100%;
   border-radius: 0.5rem 0.5rem 0 0;
   object-fit: cover;
 `;
@@ -20,11 +32,10 @@ export const Flag = styled(motion.img)`
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 16.875rem;
   padding: 1.5rem;
 `;
 
-export const Title = styled(motion.strong)`
+export const Title = styled.strong`
   font-size: 1.25rem;
   font-weight: 700;
 `;

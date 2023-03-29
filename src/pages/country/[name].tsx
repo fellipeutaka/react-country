@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { ArrowLeft } from "phosphor-react";
 
 import type { Country } from "@/@types/country";
-import { Header } from "@/components/Header";
+import { Header } from "@/components/ui/Header";
 import { SEO } from "@/components/utils/SEO";
 import { useCountry } from "@/hooks/useCountry";
 import { api } from "@/lib/axios";
@@ -33,87 +32,62 @@ export default function Country({ data }: CountryProps) {
   return (
     <SEO title={`${name} / Country`} description={`Detalhes do país ${name}`}>
       <Header />
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { opacity: 1, transition: { duration: 0.5 } },
-          exit: { opacity: 0, transition: { duration: 0.5 } },
-        }}
-      >
-        <S.Container>
-          <S.BackButton onClick={back}>
-            <ArrowLeft weight="bold" size={16} />
-            Voltar
-          </S.BackButton>
-          <S.Details>
-            <S.Flag
-              src={flag}
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { x: -100, opacity: 0 },
-                visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-              }}
-            />
-            <S.Info
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { x: 100, opacity: 0 },
-                visible: { x: 0, opacity: 1, transition: { duration: 0.5 } },
-              }}
-            >
-              <S.Title>{name}</S.Title>
-              <S.Text>
-                <b>Nome nativo: </b>
-                {nativeName}
-              </S.Text>
-              <S.Text>
-                <b>População: </b>
-                {population}
-              </S.Text>
-              <S.Text>
-                <b>Região: </b>
-                {region}
-              </S.Text>
-              <S.Text>
-                <b>Sub-região: </b>
-                {subregion}
-              </S.Text>
-              <S.Text>
-                <b>Capital: </b>
-                {capital}
-              </S.Text>
-              <S.Text>
-                <b>Tld: </b>
-                {tld}
-              </S.Text>
-              <S.Text>
-                <b>Moeda: </b>
-                {currencies}
-              </S.Text>
-              <S.Text>
-                <b>Idiomas: </b>
-                {languages}
-              </S.Text>
-              <S.Text>
-                <b>Fronteiras: </b>
-                <S.BorderList>
-                  {Array.isArray(borders)
-                    ? borders.map(({ label, href }) => (
-                        <S.Border key={label} href={href}>
-                          {label}
-                        </S.Border>
-                      ))
-                    : borders}
-                </S.BorderList>
-              </S.Text>
-            </S.Info>
-          </S.Details>
-        </S.Container>
-      </motion.div>
+      <S.Container>
+        <S.BackButton onClick={back}>
+          <ArrowLeft weight="bold" size={16} />
+          Voltar
+        </S.BackButton>
+        <S.Details>
+          <S.Flag src={flag} />
+          <S.Info>
+            <S.Title>{name}</S.Title>
+            <S.Text>
+              <b>Nome nativo: </b>
+              {nativeName}
+            </S.Text>
+            <S.Text>
+              <b>População: </b>
+              {population}
+            </S.Text>
+            <S.Text>
+              <b>Região: </b>
+              {region}
+            </S.Text>
+            <S.Text>
+              <b>Sub-região: </b>
+              {subregion}
+            </S.Text>
+            <S.Text>
+              <b>Capital: </b>
+              {capital}
+            </S.Text>
+            <S.Text>
+              <b>Tld: </b>
+              {tld}
+            </S.Text>
+            <S.Text>
+              <b>Moeda: </b>
+              {currencies}
+            </S.Text>
+            <S.Text>
+              <b>Idiomas: </b>
+              {languages}
+            </S.Text>
+            <S.Text>
+              <b>Fronteiras: </b>
+              <S.BorderList>
+                {Array.isArray(borders)
+                  ? borders.map(({ label, href }) => (
+                      <S.Border key={label} href={href}>
+                        {label}
+                      </S.Border>
+                    ))
+                  : borders}
+              </S.BorderList>
+            </S.Text>
+          </S.Info>
+        </S.Details>
+      </S.Container>
     </SEO>
   );
 }

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import styled, { keyframes } from "styled-components";
 
 const pulse = keyframes`
@@ -10,7 +9,7 @@ const pulse = keyframes`
   }
 `;
 
-export const Container = styled(motion.div)`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
@@ -18,7 +17,7 @@ export const Container = styled(motion.div)`
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 `;
 
-export const Flag = styled(motion.div)`
+export const Flag = styled.div`
   width: 16.875rem;
   height: 9.875rem;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -34,7 +33,7 @@ export const Info = styled.div`
   padding: 1.5rem;
 `;
 
-export const Title = styled(motion.div)`
+export const Title = styled.div`
   width: 70%;
   height: 1.5rem;
   margin-bottom: 0.75rem;

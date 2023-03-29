@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
 import styled from "styled-components";
 
-export const Container = styled(motion.main)`
+export const Container = styled.main`
   margin-inline: ${({ theme }) => theme.spacing.bodyMargin.sm};
   margin-block-start: 5.75rem;
   margin-block-end: 2rem;
@@ -12,7 +11,7 @@ export const Container = styled(motion.main)`
   }
 `;
 
-export const BackButton = styled(motion.button)`
+export const BackButton = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +39,7 @@ export const Details = styled.div`
   gap: 3rem;
 `;
 
-export const Flag = styled(motion.img)`
+export const Flag = styled.img`
   width: 35rem;
   height: auto;
 
@@ -55,7 +54,7 @@ export const Title = styled.h1`
   margin-bottom: 1rem;
 `;
 
-export const Info = styled(motion.div)`
+export const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;

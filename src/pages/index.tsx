@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useDeferredValue, useState } from "react";
 
 import { GetStaticProps } from "next";
 import { MagnifyingGlass } from "phosphor-react";
 
 import type { Country } from "@/@types/country";
-import { CountryList } from "@/components/CountryList";
-import { Header } from "@/components/Header";
-import { Select } from "@/components/Select";
-import * as TextField from "@/components/TextField";
+import { CountryList } from "@/components/ui/CountryList";
+import { Header } from "@/components/ui/Header";
+import { Select } from "@/components/ui/Select";
+import * as TextField from "@/components/ui/TextField";
 import { SEO } from "@/components/utils/SEO";
 import { Regions, regions } from "@/constants/regions";
+import { useFilteredCountries } from "@/hooks/useFilteredCountries";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Home";
 
@@ -18,12 +19,19 @@ type HomeProps = {
 };
 
 export const INITIAL_SELECT_VALUE = "Filtre pela região";
+const SELECT_ITEMS = [INITIAL_SELECT_VALUE, ...regions];
 
 export default function Home({ countries }: HomeProps) {
   const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
   const [region, setRegion] = useState<Regions | typeof INITIAL_SELECT_VALUE>(
     INITIAL_SELECT_VALUE
   );
+  const filteredCountries = useFilteredCountries({
+    countries,
+    query: deferredQuery,
+    region,
+  });
 
   return (
     <SEO
@@ -44,14 +52,13 @@ export default function Home({ countries }: HomeProps) {
         </TextField.Root>
         <Select
           rootProps={{
-            defaultValue: INITIAL_SELECT_VALUE,
             onValueChange: (value) => setRegion(value as typeof region),
           }}
-          items={[INITIAL_SELECT_VALUE, ...regions]}
+          items={SELECT_ITEMS}
           placeholder={INITIAL_SELECT_VALUE}
         />
       </S.Search>
-      <CountryList query={query} region={region} countries={countries} />
+      <CountryList countries={filteredCountries} />
     </SEO>
   );
 }

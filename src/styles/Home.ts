@@ -13,7 +13,7 @@ export const Search = styled.div`
     margin-inline: ${({ theme }) => theme.spacing.bodyMargin.lg};
   }
 
-  @media screen and (min-width: 51.5rem) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}) {
     & > div#search {
       max-width: 30rem;
     }

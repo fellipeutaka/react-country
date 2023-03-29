@@ -22,7 +22,9 @@ export function handleFilterByName({
   countries,
   query,
 }: HandleFilterByNameProps) {
+  const loweredCaseQuery = query.toLowerCase();
+
   return countries.filter((country) =>
-    country.translations.por.common.toLowerCase().includes(query.toLowerCase())
+    country.translations.por.common.toLowerCase().includes(loweredCaseQuery)
   );
 }
