@@ -23,7 +23,7 @@ export const Select = memo(
       <S.Root {...rootProps}>
         <S.Trigger {...triggerProps} ref={ref}>
           <S.Value placeholder={<S.Placeholder>{placeholder}</S.Placeholder>} />
-          <S.Icon>
+          <S.Icon className="select-icon">
             <CaretDown weight="bold" size={24} />
           </S.Icon>
         </S.Trigger>

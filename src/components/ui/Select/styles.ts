@@ -25,6 +25,10 @@ export const Trigger = styled(SelectPrimitive.Trigger)`
     box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary},
       0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
+
+  &[data-state="open"] span.select-icon {
+    rotate: 180deg;
+  }
 `;
 
 export const Value = styled(SelectPrimitive.Value)``;
@@ -35,6 +39,7 @@ export const Placeholder = styled.span`
 
 export const Icon = styled(SelectPrimitive.Icon)`
   color: ${({ theme }) => theme.colors.gray};
+  transition: rotate 300ms ease-in-out;
 `;
 
 export const Portal = styled(SelectPrimitive.Portal)``;
