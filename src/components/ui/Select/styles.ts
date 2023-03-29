@@ -1,6 +1,19 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
+import { animate } from "@/styles/utils/animate";
 import * as SelectPrimitive from "@radix-ui/react-select";
+
+const growDown = keyframes`
+    0% {
+        transform: scaleY(0);
+    }
+    80% {
+      transform: scaleY(1.1);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+`;
 
 export const Root = styled(SelectPrimitive.Root)``;
 
@@ -41,8 +54,11 @@ export const Content = styled(SelectPrimitive.Content)`
   background-color: ${({ theme }) => theme.colors.bg};
   border-radius: 0.375rem;
   overflow: hidden;
+  transform-origin: top center;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  ${animate(growDown)}
 `;
 
 export const ScrollUpButton = styled(SelectPrimitive.ScrollUpButton)`

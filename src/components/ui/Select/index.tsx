@@ -28,7 +28,7 @@ export const Select = memo(
           </S.Icon>
         </S.Trigger>
         <S.Portal>
-          <S.Content>
+          <S.Content position="popper" sideOffset={4}>
             <S.ScrollUpButton>
               <CaretUp weight="bold" />
             </S.ScrollUpButton>
