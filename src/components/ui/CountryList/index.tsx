@@ -2,7 +2,7 @@ import { memo } from "react";
 
 import { Country } from "@/@types/country";
 import { CountryCard } from "@/components/ui/CountryCard";
-import { useCountry } from "@/hooks/useCountry";
+import { getCountryInfo } from "@/utils/getCountryInfo";
 
 import * as S from "./styles";
 
@@ -17,7 +17,7 @@ export const CountryList = memo(({ countries }: CountryListProps) => {
         <S.NotFound>País não encontrado!</S.NotFound>
       ) : (
         countries
-          .map(useCountry)
+          .map(getCountryInfo)
           .map((country) => (
             <CountryCard
               key={country.flag}

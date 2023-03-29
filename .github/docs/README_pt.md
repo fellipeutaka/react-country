@@ -14,6 +14,7 @@ Um aplicativo Next.js com Styled-Components para obter informações sobre país
 - Navegação entre os países fronteiriços na página de detalhes
 - Layout responsivo
 - Animações
+- Tema escuro e claro
 
 ## Tecnologias
 
@@ -26,8 +27,9 @@ Um aplicativo Next.js com Styled-Components para obter informações sobre país
 
 ## Boas práticas/Padrões utilizados
 
-- React Hooks (useState, useDeferredValue)
-- Custom hooks (useCountry, useFilteredCountries)
+- React Hooks (useState, useEffect, useContext, useDeferredValue)
+- Custom hooks (useTheme)
+- React APIs (createContext, memo)
 - Component Composition Pattern (Padrão de composição de componentes)
 - Next.js Rotas Dinâmicas com getStaticProps e getStaticPaths
 - Tematização utilizando o ThemeProvider do Styled-Components

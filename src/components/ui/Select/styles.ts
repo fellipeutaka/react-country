@@ -17,7 +17,8 @@ export const Trigger = styled(SelectPrimitive.Trigger)`
   outline: none;
   border: none;
   background-color: transparent;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  color: ${({ theme }) => theme.colors.text};
+  box-shadow: 0px 0px 8px ${({ theme }) => theme.colors.gray800};
   border-radius: 0.5rem;
   user-select: none;
   transition: all 0.2s;
@@ -79,8 +80,9 @@ export const Item = styled(SelectPrimitive.Item)`
   padding: 0.25rem 1.5rem;
   user-select: none;
   outline: none;
-  transition: background-color 0.2s ease-in-out;
-  font-family: unset;
+  transition: color, background-color 0.2s ease-in-out;
+  background-color: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme }) => theme.colors.text};
 
   &[data-highlighted] {
     background-color: ${({ theme }) => theme.colors.primary};

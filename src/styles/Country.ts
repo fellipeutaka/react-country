@@ -20,14 +20,20 @@ export const BackButton = styled.button`
   font-size: 0.875rem;
   border: none;
   outline: none;
-  background-color: ${({ theme }) => theme.colors.bg};
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 8px ${({ theme }) => theme.colors.gray800};
   border-radius: 0.5rem;
   cursor: pointer;
-  transition: filter 200ms ease;
+  background-color: ${({ theme }) => theme.colors.gray900};
+  color: ${({ theme }) => theme.colors.text};
+  transition: all 300ms ease-in-out;
 
   &:hover {
     filter: brightness(90%);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.primary},
+      0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
 `;
 
@@ -37,6 +43,8 @@ export const Details = styled.div`
   flex-wrap: wrap;
   align-items: center;
   gap: 3rem;
+  color: ${({ theme }) => theme.colors.text};
+  transition: color 300ms ease-in-out;
 `;
 
 export const Flag = styled.img`

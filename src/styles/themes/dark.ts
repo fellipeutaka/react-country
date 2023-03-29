@@ -1,10 +1,10 @@
-export const base = {
+export const dark = {
   colors: {
     primary: "#008152",
-    bg: "#fff",
-    gray900: "#f9f9f9",
-    gray800: "#c9c9c9",
-    text: "#000",
+    bg: "#000",
+    gray900: "#222",
+    gray800: "#333",
+    text: "#fff",
     gray: "#8c8c8c",
   },
   breakpoints: {

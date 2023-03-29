@@ -5,9 +5,9 @@ import { ArrowLeft } from "phosphor-react";
 import type { Country } from "@/@types/country";
 import { Header } from "@/components/ui/Header";
 import { SEO } from "@/components/utils/SEO";
-import { useCountry } from "@/hooks/useCountry";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Country";
+import { getCountryInfo } from "@/utils/getCountryInfo";
 
 type CountryProps = {
   data: Country;
@@ -27,7 +27,7 @@ export default function Country({ data }: CountryProps) {
     languages,
     borders,
     flag,
-  } = useCountry(data);
+  } = getCountryInfo(data);
 
   return (
     <SEO title={`${name} / Country`} description={`Detalhes do país ${name}`}>

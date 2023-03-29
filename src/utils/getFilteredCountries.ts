@@ -1,4 +1,4 @@
-import { Country } from "@/@types/country";
+import type { Country } from "@/@types/country";
 import { Regions } from "@/constants/regions";
 import { INITIAL_SELECT_VALUE } from "@/pages";
 import {
@@ -12,7 +12,7 @@ type UseFilteredCountriesProps = {
   countries: Country[];
 };
 
-export function useFilteredCountries({
+export function getFilteredCountries({
   query,
   countries,
   region,

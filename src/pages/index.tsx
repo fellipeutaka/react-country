@@ -10,9 +10,9 @@ import { Select } from "@/components/ui/Select";
 import * as TextField from "@/components/ui/TextField";
 import { SEO } from "@/components/utils/SEO";
 import { Regions, regions } from "@/constants/regions";
-import { useFilteredCountries } from "@/hooks/useFilteredCountries";
 import { api } from "@/lib/axios";
 import * as S from "@/styles/Home";
+import { getFilteredCountries } from "@/utils/getFilteredCountries";
 
 type HomeProps = {
   countries: Country[];
@@ -27,7 +27,7 @@ export default function Home({ countries }: HomeProps) {
   const [region, setRegion] = useState<Regions | typeof INITIAL_SELECT_VALUE>(
     INITIAL_SELECT_VALUE
   );
-  const filteredCountries = useFilteredCountries({
+  const filteredCountries = getFilteredCountries({
     countries,
     query: deferredQuery,
     region,
