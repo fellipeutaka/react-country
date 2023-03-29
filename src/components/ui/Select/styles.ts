@@ -75,6 +75,10 @@ export const Item = styled(SelectPrimitive.Item)`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.bg};
   }
+
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    height: 2.25rem;
+  }
 `;
 
 export const ItemText = styled(SelectPrimitive.ItemText)``;
